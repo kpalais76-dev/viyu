@@ -36,7 +36,7 @@
       <text class="txt">拍摄鱼获</text>
       <text class="sub">AI 自动识别</text>
     </view>
-    <view class="action-btn manual">
+    <view class="action-btn manual" bindtap="goToForm">
       <text class="icon">📝</text>
       <text class="txt">手动记鱼</text>
       <text class="sub">详细数据复盘</text>

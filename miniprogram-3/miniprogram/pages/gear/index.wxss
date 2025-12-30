@@ -1,30 +1,18 @@
+/* pages/gear/index.wxss */
 page { background-color: #f6f7f9; }
-.gear-page { width: 100%; display: block; }
 
 /* 顶部 */
-.gear-header {
-  background: #fff;
-  padding: 20rpx 30rpx;
-  border-bottom: 1rpx solid #f0f0f0;
-}
-.search-bar {
-  background: #f0f2f5;
-  border-radius: 30rpx;
-  padding: 12rpx 24rpx;
-  display: flex;
-  align-items: center;
-  margin-bottom: 16rpx;
-}
-.search-icon { font-size: 24rpx; margin-right: 12rpx; opacity: 0.5; }
+.gear-header { background: #fff; padding: 20rpx 30rpx; border-bottom: 1rpx solid #f0f0f0; }
+.search-bar { background: #f0f2f5; border-radius: 30rpx; padding: 12rpx 24rpx; display: flex; align-items: center; margin-bottom: 16rpx; }
+.search-icon { margin-right: 12rpx; font-size: 24rpx; }
 .search-input { font-size: 26rpx; flex: 1; }
-
-.inventory-stat { display: flex; justify-content: space-between; font-size: 22rpx; color: #999; padding: 0 10rpx; }
+.inventory-stat { display: flex; justify-content: space-between; font-size: 24rpx; color: #666; font-weight: bold; }
 
 /* 分段器 */
-.segment-wrapper { background: #fff; padding-bottom: 20rpx; position: sticky; top: 0; z-index: 10; box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.02); }
+.segment-wrapper { background: #fff; padding-bottom: 20rpx; position: sticky; top: 0; z-index: 10; }
 .segment-bar { display: flex; margin: 0 30rpx; background: #f5f5f5; border-radius: 16rpx; padding: 6rpx; }
-.segment-item { flex: 1; text-align: center; font-size: 26rpx; padding: 12rpx 0; color: #666; border-radius: 12rpx; transition: all 0.2s; }
-.segment-item.active { background: #fff; color: #333; font-weight: bold; box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05); }
+.segment-item { flex: 1; text-align: center; font-size: 26rpx; padding: 12rpx 0; color: #666; }
+.segment-item.active { background: #fff; color: #333; font-weight: bold; border-radius: 12rpx; box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.05); }
 
 /* 列表 */
 .gear-list { padding: 24rpx 30rpx; }
@@ -32,12 +20,12 @@ page { background-color: #f6f7f9; }
 /* 录入按钮 */
 .add-new-card { background: #fff; padding: 20rpx; border-radius: 20rpx; margin-bottom: 24rpx; }
 .dashed-box { border: 2rpx dashed #ccc; border-radius: 16rpx; height: 80rpx; display: flex; align-items: center; justify-content: center; color: #666; font-size: 28rpx; background: #fafafa; }
-.plus-icon { font-size: 36rpx; margin-right: 12rpx; font-weight: 300; }
+.plus-icon { font-size: 36rpx; margin-right: 12rpx; }
 
 /* 装备卡片 */
 .gear-card { background: #fff; padding: 24rpx; border-radius: 20rpx; margin-bottom: 20rpx; display: flex; align-items: center; box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.02); }
 
-.gear-img-box { width: 100rpx; height: 100rpx; background: #f0f2f5; border-radius: 16rpx; display: flex; align-items: center; justify-content: center; font-size: 50rpx; margin-right: 24rpx; }
+.gear-img-box { width: 100rpx; height: 100rpx; border-radius: 16rpx; display: flex; align-items: center; justify-content: center; font-size: 40rpx; margin-right: 24rpx; }
 .gear-img-box.rod { background: #e3f2fd; }
 .gear-img-box.reel { background: #e0f2f1; }
 
@@ -45,9 +33,7 @@ page { background-color: #f6f7f9; }
 .gear-title-row { display: flex; align-items: center; margin-bottom: 8rpx; }
 .gear-name { font-size: 30rpx; font-weight: bold; color: #333; margin-right: 12rpx; }
 .gear-badge { font-size: 20rpx; background: #eee; padding: 2rpx 8rpx; border-radius: 6rpx; color: #666; }
-.gear-badge.pro { background: #333; color: #FFD700; }
-
 .gear-params { font-size: 24rpx; color: #666; margin-bottom: 8rpx; }
-.gear-meta { font-size: 20rpx; color: #bbb; display: flex; gap: 10rpx; }
+.gear-meta { font-size: 20rpx; color: #bbb; }
 
-.gear-action { color: #ccc; font-weight: bold; font-size: 30rpx; padding-left: 20rpx; }
+.empty-tip { text-align: center; color: #999; padding: 60rpx; font-size: 26rpx; }

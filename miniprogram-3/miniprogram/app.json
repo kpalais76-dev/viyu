@@ -4,7 +4,10 @@
     "pages/gear/index",
     "pages/record/index",
     "pages/discovery/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/form/index",
+    "utils/data-warehouse.js",
+    "utils/data-warehouse"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,19 +17,39 @@
   },
   "tabBar": {
     "custom": true,
-    "color": "#999999",
-    "selectedColor": "#4CAF50",
+    "color": "#000000",
+    "selectedColor": "#000000",
     "list": [
-      { "pagePath": "pages/home/index", "text": "战绩" },
-      { "pagePath": "pages/gear/index", "text": "装备" },
-      { "pagePath": "pages/record/index", "text": "开钓" },
-      { "pagePath": "pages/discovery/index", "text": "发现" },
-      { "pagePath": "pages/user/index", "text": "我的" }
+      {
+        "pagePath": "pages/home/index",
+        "text": "战绩"
+      },
+      {
+        "pagePath": "pages/gear/index",
+        "text": "装备"
+      },
+      {
+        "pagePath": "pages/record/index",
+        "text": "开钓"
+      },
+      {
+        "pagePath": "pages/discovery/index",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": "我的"
+      }
     ]
   },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json",
   "permission": {
-    "scope.userLocation": { "desc": "知渔需要获取您的位置以记录钓点信息" }
+    "scope.userLocation": {
+      "desc": "知渔需要获取您的位置以记录钓点信息"
+    }
   },
-  "requiredPrivateInfos": ["getLocation"],
-  "sitemapLocation": "sitemap.json"
+  "requiredPrivateInfos": [
+    "getLocation"
+  ]
 }
