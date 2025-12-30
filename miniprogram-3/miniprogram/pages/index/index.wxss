@@ -1,0 +1,104 @@
+/* index.wxss */
+page { background-color: #f6f8fa; color: #333; }
+.container { padding: 30rpx; }
+
+/* Tabs */
+.method-tabs {
+  display: flex;
+  white-space: nowrap;
+  margin-bottom: 20rpx;
+  background: #eef1f5;
+  padding: 8rpx;
+  border-radius: 16rpx;
+}
+.tab-item {
+  display: inline-block;
+  padding: 12rpx 36rpx;
+  margin-right: 10rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #666;
+  transition: all 0.3s;
+}
+.tab-item.active {
+  background: #fff;
+  color: #1976D2;
+  font-weight: bold;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+/* Intro */
+.method-intro { margin-bottom: 30rpx; padding-left: 10rpx; }
+.intro-title { font-size: 34rpx; font-weight: bold; margin-right: 16rpx; }
+.intro-desc { font-size: 24rpx; color: #888; }
+
+/* Dynamic Form Card */
+.dynamic-form-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.03);
+  margin-bottom: 30rpx;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.form-row:last-child { border-bottom: none; }
+
+.label { font-size: 30rpx; color: #555; font-weight: 500; }
+
+.picker-value { font-size: 30rpx; color: #333; display: flex; align-items: center; }
+.picker-value.placeholder { color: #ccc; }
+.arrow { margin-left: 10rpx; font-size: 20rpx; color: #ccc; }
+
+.input-wrapper { display: flex; align-items: center; text-align: right;}
+input { text-align: right; font-size: 30rpx; color: #333; width: 300rpx;}
+.ph { color: #ccc; }
+.unit { margin-left: 10rpx; color: #999; font-size: 26rpx; }
+
+/* Physics Warning */
+.physics-warning {
+  background: #fff3e0;
+  color: #ef6c00;
+  font-size: 24rpx;
+  padding: 16rpx;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  border: 1rpx solid #ffe0b2;
+  display: flex;
+  align-items: center;
+}
+
+/* Tags */
+.tags-section { margin-top: 20rpx; }
+.section-title { font-size: 28rpx; color: #666; margin-bottom: 20rpx; display: block; }
+.tags-container { display: flex; flex-wrap: wrap; gap: 20rpx; }
+
+.tag-chip {
+  padding: 12rpx 32rpx;
+  background: #fff;
+  border: 1rpx solid #eee;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+.tag-chip.active {
+  background: #E3F2FD;
+  color: #1976D2;
+  border-color: #1976D2;
+  font-weight: bold;
+}
+
+.btn-save {
+  margin-top: 60rpx;
+  background: #222;
+  color: #fff;
+  border-radius: 50rpx;
+}

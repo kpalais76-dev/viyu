@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="header">
+    <text class="title">渔获档案</text>
+    <text class="subtitle">共记录 0 次出行</text>
+  </view>
+
+  <view class="empty-state">
+    <text class="emoji">🎣</text>
+    <text>还没有钓鱼记录</text>
+    <text class="hint">快去中间页面记录你的第一次爆护吧！</text>
+  </view>
+  
+  <view class="record-list">
+    </view>
+</view>

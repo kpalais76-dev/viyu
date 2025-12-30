@@ -1,0 +1,72 @@
+<view class="gear-page">
+  <view class="gear-header">
+    <view class="search-bar">
+      <text class="search-icon">🔍</text>
+      <input class="search-input" placeholder="搜索我的装备..." disabled />
+    </view>
+    <view class="inventory-stat">
+      <text>库存总值: ¥12,800</text>
+      <text>单品: 48</text>
+    </view>
+  </view>
+
+  <view class="segment-wrapper">
+    <view class="segment-bar">
+      <view class="segment-item active">我的库存</view>
+      <view class="segment-item">套装方案</view>
+      <view class="segment-item">心愿单</view>
+    </view>
+  </view>
+
+  <view class="gear-list">
+    
+    <view class="add-new-card">
+      <view class="dashed-box">
+        <text class="plus-icon">+</text>
+        <text>扫码 / 手动录入新装备</text>
+      </view>
+    </view>
+
+    <view class="gear-card">
+      <view class="gear-img-box rod">
+        <text>🎣</text> </view>
+      <view class="gear-info">
+        <view class="gear-title-row">
+          <text class="gear-name">达瓦 凛·风 4.5m</text>
+          <text class="gear-badge">综合竿</text>
+        </view>
+        <view class="gear-params">
+          <text>28调 · 85g · 碳素</text>
+        </view>
+        <view class="gear-meta">
+          <text class="brand">DAIWA</text>
+          <text class="date">2023.10 入手</text>
+        </view>
+      </view>
+      <view class="gear-action">...</view>
+    </view>
+
+    <view class="gear-card">
+      <view class="gear-img-box reel">
+        <text>⚙️</text>
+      </view>
+      <view class="gear-info">
+        <view class="gear-title-row">
+          <text class="gear-name">禧玛诺 Stella 2500</text>
+          <text class="gear-badge pro">旗舰</text>
+        </view>
+        <view class="gear-params">
+          <text>纺车轮 · 5.3速比</text>
+        </view>
+        <view class="gear-meta">
+          <text class="brand">SHIMANO</text>
+          <text class="date">2024.01 入手</text>
+        </view>
+      </view>
+      <view class="gear-action">...</view>
+    </view>
+
+  </view>
+
+  <view style="height: 120rpx;"></view>
+</view>

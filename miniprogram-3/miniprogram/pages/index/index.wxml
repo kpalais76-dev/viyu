@@ -1,0 +1,84 @@
+<view class="container">
+
+<scroll-view class="method-tabs" scroll-x enable-flex>
+  <block wx:for="{{methodKeys}}" wx:key="*this">
+    <view 
+      class="tab-item {{currentMethod === item ? 'active' : ''}}" 
+      bindtap="switchMethod" 
+      data-key="{{item}}"
+    >
+      {{item === 'taidiao' ? '台钓' : (item === 'lure' ? '路亚' : (item === 'iso' ? '矶钓' : '传统'))}}
+    </view>
+  </block>
+</scroll-view>
+
+<view class="method-intro">
+  <text class="intro-title">{{currentMethodInfo.name}}</text>
+  <text class="intro-desc">{{currentMethodInfo.desc}}</text>
+</view>
+
+<view class="dynamic-form-card">
+  
+  <view class="physics-warning" wx:if="{{warningMsg}}">
+    {{warningMsg}}
+  </view>
+
+  <block wx:for="{{dynamicFormFields}}" wx:key="key">
+    
+    <view class="form-row" wx:if="{{item.type === 'select'}}">
+      <text class="label">{{item.label}}</text>
+      <picker 
+        bindchange="handleFieldChange" 
+        data-key="{{item.key}}" 
+        range="{{item.options}}"
+      >
+        <view class="picker-value {{formData[item.key] ? '' : 'placeholder'}}">
+          {{formData[item.key] || '请选择'}}
+          <text class="arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-row" wx:if="{{item.type === 'input' || item.type === 'number'}}">
+      <text class="label">{{item.label}}</text>
+      <view class="input-wrapper">
+        <input 
+          type="{{item.type === 'number' ? 'digit' : 'text'}}"
+          placeholder="{{item.placeholder}}" 
+          placeholder-class="ph"
+          bindinput="handleFieldChange"
+          data-key="{{item.key}}"
+          value="{{formData[item.key]}}"
+        />
+        <text wx:if="{{item.unit}}" class="unit">{{item.unit}}</text>
+      </view>
+    </view>
+
+  </block>
+</view>
+
+<view class="tags-section">
+  <text class="section-title">技法复盘</text>
+  <view class="tags-container">
+    <block wx:for="{{availableTags}}" wx:key="*this">
+      <view 
+        class="tag-chip {{util.includes(selectedTags, item) ? 'active' : ''}}" 
+        bindtap="handleTagToggle" 
+        data-tag="{{item}}"
+      >
+        {{item}}
+      </view>
+    </block>
+  </view>
+</view>
+
+<button class="btn-save">保存 {{currentMethodInfo.name}} 记录</button>
+
+</view>
+
+<wxs module="util">
+function includes(arr, val) {
+  return arr.indexOf(val) > -1;
+}
+module.exports.includes = includes;
+</wxs>

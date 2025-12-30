@@ -1,0 +1,43 @@
+page { background-color: #f6f7f9; }
+.page-container { height: 100vh; }
+
+/* 顶部仪表盘 */
+.dashboard-header {
+  background: linear-gradient(180deg, #2E7D32 0%, #4CAF50 100%);
+  padding: 40rpx 30rpx 80rpx 30rpx; /* 底部多留白给圆角 */
+  color: #fff;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(46, 125, 50, 0.2);
+}
+
+.header-top { display: flex; justify-content: space-between; font-size: 26rpx; opacity: 0.9; margin-bottom: 40rpx; }
+.location-badge { background: rgba(0,0,0,0.2); padding: 8rpx 20rpx; border-radius: 30rpx; }
+
+.data-grid { display: flex; align-items: center; }
+.data-item { flex: 1; text-align: center; display: flex; flex-direction: column; }
+.data-item.divider { border-left: 1rpx solid rgba(255,255,255,0.2); border-right: 1rpx solid rgba(255,255,255,0.2); }
+
+.num { font-size: 48rpx; font-weight: bold; font-family: 'DIN Alternate', sans-serif; }
+.unit { font-size: 24rpx; margin-left: 6rpx; font-weight: normal; }
+.lbl { font-size: 24rpx; margin-top: 10rpx; opacity: 0.8; }
+
+/* 时间轴列表 */
+.timeline-section { padding: 30rpx; margin-top: -40rpx; } /* 负边距上移 */
+.section-title { font-size: 32rpx; font-weight: bold; margin-bottom: 24rpx; color: #333; padding-left: 10rpx; }
+
+.record-card { display: flex; background: #fff; padding: 30rpx; border-radius: 20rpx; margin-bottom: 24rpx; box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.03); }
+
+.card-date { display: flex; flex-direction: column; align-items: center; justify-content: center; padding-right: 30rpx; border-right: 1rpx solid #f0f0f0; margin-right: 30rpx; min-width: 80rpx; }
+.day { font-size: 40rpx; font-weight: bold; color: #333; }
+.month { font-size: 22rpx; color: #999; }
+
+.card-content { flex: 1; display: flex; flex-direction: column; gap: 10rpx; }
+.card-header { display: flex; justify-content: space-between; align-items: center; }
+.site { font-size: 30rpx; font-weight: bold; color: #333; }
+.tag { font-size: 20rpx; padding: 4rpx 12rpx; border-radius: 8rpx; }
+.tag.win { background: #E8F5E9; color: #2E7D32; }
+.tag.lose { background: #FFEBEE; color: #C62828; }
+
+.card-body { font-size: 26rpx; color: #666; }
+.card-footer { font-size: 22rpx; color: #999; margin-top: 6rpx; }
