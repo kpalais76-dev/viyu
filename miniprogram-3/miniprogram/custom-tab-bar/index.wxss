@@ -1,0 +1,65 @@
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 96rpx;
+  background: rgba(255, 255, 255, 0.98); /* 轻微透明 */
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2rpx 20rpx rgba(0,0,0,0.03); /* 极淡的高级阴影 */
+  z-index: 9999;
+}
+
+.tab-bar-item {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 极简文字风格 */
+.tab-text {
+  font-size: 28rpx; /* 字号加大 */
+  font-weight: 400;
+  transition: all 0.2s;
+}
+.tab-text.active {
+  font-weight: bold; /* 选中加粗 */
+  transform: scale(1.05); /* 微微放大 */
+}
+
+/* 中间悬浮按钮 */
+.special-wrapper {
+  position: relative;
+  top: -20rpx; /* 向上浮动 */
+}
+
+.special-btn {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  /* 采用知渔主色调：墨绿或渐变金，这里用渐变绿显得专业 */
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 20rpx rgba(76, 175, 80, 0.4); /* 绿色光晕 */
+  border: 8rpx solid #fff; /* 白色描边，产生切割感 */
+}
+
+.plus-icon {
+  color: #fff;
+  font-size: 60rpx;
+  font-weight: 300;
+  margin-top: -8rpx; /* 微调垂直居中 */
+}
+
+.special-text {
+  font-size: 22rpx;
+  color: #333;
+  margin-top: 6rpx;
+  font-weight: bold;
+}
