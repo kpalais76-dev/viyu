@@ -1,0 +1,46 @@
+<view class="container">
+  
+  <view class="header-section">
+    <view>
+      <view class="title">{{uiConfig[mode].title}}</view>
+      <view class="subtitle">{{uiConfig[mode].sub}}</view>
+    </view>
+    <view class="rank-entry" bindtap="goToRanking">
+      <text>{{uiConfig[mode].rank}}</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <view class="action-card">
+    <view class="scan-area" bindtap="handleMainAction">
+      <view class="scan-text">
+        <text class="main-text">{{uiConfig[mode].mainBtn}}</text>
+        <text class="sub-text">{{uiConfig[mode].mainDesc}}</text>
+      </view>
+    </view>
+
+    <view class="divider">
+      <text>OR</text>
+    </view>
+
+    <view class="search-box">
+      <input class="search-input" placeholder="{{uiConfig[mode].searchHint}}" bindconfirm="handleSearch" confirm-type="search" />
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'gear'}}" class="manual-entry" bindtap="handleManualGear">
+    <text>找不到？</text>
+    <text class="link">手动录入新装备 ></text>
+  </view>
+
+  <view wx:if="{{mode === 'setup'}}" class="setup-grid-area">
+    <view class="grid-title">手动组装 · 选择流派</view>
+    <view class="method-grid">
+      <view class="method-card" wx:for="{{methods}}" wx:key="key" bindtap="handleManualSetup" data-key="{{item.key}}">
+        <text class="m-name">{{item.name}}</text>
+        <text class="m-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>
