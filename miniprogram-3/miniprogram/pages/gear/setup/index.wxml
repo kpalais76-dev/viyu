@@ -1,84 +1,71 @@
 <view class="container">
   
-  <view class="status-bar">
-    <view class="page-title">战术配置台</view>
-    <view class="mode-badge">
-      <text class="mode-label">当前作战模式</text>
-      <text class="mode-val">{{currentMethodName}}</text>
+  <view class="header-mini">
+    <view class="header-title">{{uiConfig[mode].title}}</view>
+    <view class="header-mode">{{mode === 'gear' ? 'ASSETS' : 'TACTICS'}}</view>
+  </view>
+
+  <view class="action-row">
+    <view class="action-btn-main" bindtap="handleMainAction">
+      <view class="icon-box">{{mode === 'gear' ? '📸' : '📋'}}</view>
+      <view class="btn-text-group">
+        <text class="btn-title">{{uiConfig[mode].mainBtn}}</text>
+        <text class="btn-sub">{{uiConfig[mode].mainDesc}}</text>
+      </view>
+    </view>
+
+    <view class="action-btn-sub" bindtap="handlePaste">
+      <text class="sub-title">IMPORT CODE</text>
     </view>
   </view>
 
-  <view class="group-title">核心模组</view>
-  <view class="card">
-    <picker bindchange="bindPick" data-type="rod" value="{{rodIndex}}" range="{{rods}}" range-key="name">
-      <view class="form-item">
-        <text class="label">主武器 (竿)<text class="req">*</text></text>
-        <view class="picker-val {{rodIndex>-1?'':'placeholder'}}">{{rodIndex > -1 ? rods[rodIndex].name : '点击装配'}} <text class="arrow">▼</text></view>
-      </view>
-    </picker>
-    <picker wx:if="{{needsReel}}" bindchange="bindPick" data-type="reel" value="{{reelIndex}}" range="{{reels}}" range-key="name">
-      <view class="form-item">
-        <text class="label">动力源 (轮)<text class="req">*</text></text>
-        <view class="picker-val {{reelIndex>-1?'':'placeholder'}}">{{reelIndex > -1 ? reels[reelIndex].name : '点击装配'}} <text class="arrow">▼</text></view>
-      </view>
-    </picker>
-    <picker bindchange="bindPick" data-type="line" value="{{lineIndex}}" range="{{lines}}" range-key="name">
-      <view class="form-item">
-        <text class="label">传输线 (线)<text class="req">*</text></text>
-        <view class="picker-val {{lineIndex>-1?'':'placeholder'}}">{{lineIndex > -1 ? lines[lineIndex].name : '点击装配'}} <text class="arrow">▼</text></view>
-      </view>
-    </picker>
-    <picker wx:if="{{needsFloat}}" bindchange="bindPick" data-type="float" value="{{floatIndex}}" range="{{floats}}" range-key="name">
-      <view class="form-item">
-        <text class="label">侦查眼 (漂)</text>
-        <view class="picker-val {{floatIndex>-1?'':'placeholder'}}">{{floatIndex > -1 ? floats[floatIndex].name : '可选装配'}} <text class="arrow">▼</text></view>
-      </view>
-    </picker>
+  <view class="search-box">
+    <text class="search-icon">🔍</text>
+    <input 
+      class="search-input" 
+      placeholder="{{uiConfig[mode].searchHint}}" 
+      placeholder-class="ph-style"
+      confirm-type="search"
+      bindconfirm="handleSearch"
+    />
   </view>
 
-  <view class="group-title">方案标识</view>
-  <view class="card">
-    <view class="form-item">
-      <text class="label">代号<text class="req">*</text></text>
-      <input class="input-box" placeholder="例: 巨物杀手 Type-A" placeholder-style="color:#ccc; font-weight:normal" data-field="setupName" value="{{setupName}}" bindinput="handleInput" />
-    </view>
-    <view class="form-item">
-      <text class="label">战术备注</text>
-      <input class="input-box" placeholder="适用场景 / 对象鱼" placeholder-style="color:#ccc; font-weight:normal" data-field="desc" value="{{desc}}" bindinput="handleInput" />
-    </view>
-  </view>
-
-  <view class="share-area" wx:if="{{editId}}">
-    <view class="share-title">⚡ 战术分享</view>
-    <view class="share-btn-row">
-      <view class="share-btn code" bindtap="handleCopyCode">
-        <text>🔗 复制配置口令</text>
+  <block wx:if="{{mode === 'gear'}}">
+    <view class="catalog-group" wx:for="{{gearGroups}}" wx:key="title" wx:for-index="idx">
+      <view class="group-header">
+        <text>{{item.en}} // {{item.title}}</text>
+        <view class="line-dec"></view>
       </view>
-      <view class="share-btn poster" bindtap="handleGeneratePoster">
-        <text>🖼️ 生成战术蓝图</text>
+
+      <view class="{{idx === 0 ? 'grid-2-col' : 'grid-3-col'}}">
+        <view 
+          class="{{idx === 0 ? 'item-card-lg' : 'item-card-sm'}}" 
+          wx:for="{{item.list}}" 
+          wx:key="key" 
+          wx:for-item="gear"
+          bindtap="handleSelectType" 
+          data-type="{{gear.key}}"
+        >
+          <text class="{{idx === 0 ? 'lg-name' : 'sm-name'}}">{{gear.name}}</text>
+          <text class="{{idx === 0 ? 'lg-en' : 'sm-en'}}">{{gear.key}}</text>
+        </view>
       </view>
     </view>
-  </view>
+  </block>
 
-  <view class="footer">
-    <button class="btn-save" bindtap="handleSave">{{editId ? '更新配置' : '保存并生成口令'}}</button>
-  </view>
-
-  <view class="poster-modal" wx:if="{{showPosterModal}}">
-    <view class="modal-mask" bindtap="closePosterModal"></view>
-    <view class="modal-content">
-      <view class="modal-header">战术蓝图已生成</view>
-      <image src="{{posterUrl}}" class="poster-preview" mode="widthFix"></image>
-      <view class="modal-actions">
-        <button class="action-btn save" bindtap="savePosterToPhone">
-          <text>⬇️ 保存到相册</text>
-        </button>
-        <button class="action-btn close" bindtap="closePosterModal">关闭</button>
+  <block wx:if="{{mode === 'setup'}}">
+    <view class="catalog-group">
+      <view class="group-header">
+        <text>TACTICAL METHODS // 战术流派</text>
+        <view class="line-dec"></view>
       </view>
-      <view class="modal-tip">保存后可分享给微信好友</view>
+      <view class="method-list">
+        <view class="method-item" wx:for="{{methods}}" wx:key="key" bindtap="handleManualSetup" data-key="{{item.key}}">
+          <text class="m-name">{{item.name}}</text>
+          <text class="m-desc">{{item.desc}}</text>
+        </view>
+      </view>
     </view>
-  </view>
-
-  <canvas type="2d" id="shareCanvas" style="width: 375px; height: 1200px; position: fixed; left: -9999px;"></canvas>
+  </block>
 
 </view>

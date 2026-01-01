@@ -1,40 +1,136 @@
 /* pages/gear/entry/index.wxss */
-page { background: #f6f7f9; color: #333; }
-.container { padding: 40rpx; }
+page { 
+  background: #F4F6F9; 
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
-.header-section { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50rpx; }
-.title { font-size: 48rpx; font-weight: 800; color: #111; margin-bottom: 10rpx; }
-.subtitle { font-size: 28rpx; color: #888; letter-spacing: 1rpx; }
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
 
-.rank-entry { background: #fff0e6; color: #fa541c; padding: 12rpx 24rpx; border-radius: 30rpx; font-size: 24rpx; font-weight: bold; display: flex; align-items: center; }
-.rank-entry .arrow { margin-left: 8rpx; font-family: monospace; }
+/* --- Header --- */
+.header-mini {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.header-title { font-size: 40rpx; font-weight: 900; color: #1A1D26; letter-spacing: 1rpx; }
+.header-mode {
+  font-size: 22rpx; font-weight: 700; color: #2962FF; 
+  background: rgba(41, 98, 255, 0.1); padding: 6rpx 16rpx; border-radius: 30rpx;
+}
 
-.action-card { background: #fff; border-radius: 32rpx; padding: 60rpx 40rpx; box-shadow: 0 10rpx 40rpx rgba(0,0,0,0.04); margin-bottom: 60rpx; }
+/* --- Action Deck --- */
+.action-row {
+  flex-shrink: 0;
+  display: flex;
+  gap: 24rpx;
+  height: 160rpx;
+  margin-bottom: 24rpx;
+}
 
-/* 主按钮 */
-.scan-area { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20rpx 0; border-radius: 24rpx; transition: all 0.2s; }
-.scan-area:active { background: #f9f9f9; transform: scale(0.98); }
+.action-btn {
+  flex: 1;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10rpx 40rpx rgba(163, 177, 198, 0.2); 
+  border: 1rpx solid rgba(255,255,255,0.8);
+  transition: all 0.2s;
+  position: relative; overflow: hidden;
+}
+.action-btn:active { transform: scale(0.98); }
+.btn-glow {
+  position: absolute; top: -20rpx; right: -20rpx; width: 80rpx; height: 80rpx;
+  background: linear-gradient(135deg, rgba(41,98,255,0.2), transparent);
+  border-radius: 50%; filter: blur(20rpx);
+}
+.btn-title { font-size: 32rpx; font-weight: 800; color: #1A1D26; margin-bottom: 8rpx; z-index: 1; }
+.btn-sub { 
+  font-size: 20rpx; color: #8C96A5; font-weight: 700; text-transform: uppercase; 
+  letter-spacing: 1rpx; z-index: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+}
 
-.main-text { font-size: 40rpx; font-weight: 800; color: #1976D2; display: block; margin-bottom: 12rpx; }
-.sub-text { font-size: 26rpx; color: #999; }
+/* --- Search Bar --- */
+.search-section {
+  flex-shrink: 0;
+  height: 96rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 10rpx 0 30rpx;
+  margin-bottom: 20rpx; /* 减少一点底部间距，把空间留给下方 */
+  box-shadow: 0 10rpx 40rpx rgba(163, 177, 198, 0.2);
+}
+.search-input { flex: 1; height: 100%; font-size: 28rpx; color: #333; font-weight: 600; }
+.ph-style { color: #B0B8C3; font-weight: normal; }
+.search-btn-txt {
+  width: 130rpx; height: 76rpx; background: #2962FF; color: #FFF;
+  border-radius: 18rpx; display: flex; align-items: center; justify-content: center;
+  font-size: 26rpx; font-weight: bold;
+}
 
-.divider { text-align: center; margin: 50rpx 0; position: relative; }
-.divider text { background: #fff; padding: 0 20rpx; color: #ccc; font-size: 24rpx; position: relative; z-index: 1; font-weight: bold; }
-.divider::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 2rpx; background: #f0f0f0; }
+/* --- 核心修改：正方形矩阵容器 --- */
+.grid-container-wrapper {
+  flex: 1; /* 占据剩余空间 */
+  display: flex;
+  align-items: center; /* 垂直居中！让矩阵悬浮在中间，不被拉伸 */
+  justify-content: center;
+  min-height: 1;
+}
 
-.search-box { background: #f5f5f5; height: 100rpx; border-radius: 24rpx; display: flex; align-items: center; padding: 0 30rpx; }
-.search-input { flex: 1; margin-left: 10rpx; font-size: 30rpx; height: 100%; font-weight: 500; }
+.grid-matrix {
+  width: 100%;
+  /* 关键：强制宽高比为 1:1，保证整体是个大正方形 */
+  aspect-ratio: 1 / 1; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20rpx;
+}
 
-/* 手动录入 */
-.manual-entry { text-align: center; font-size: 28rpx; color: #999; }
-.manual-entry .link { color: #1976D2; font-weight: bold; margin-left: 10rpx; }
+/* 2x2 模式 */
+.grid-matrix.mode-2x2 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  /* 2x2 也可以保持 1:1，或者改成 4:3 让它稍微扁一点，看你喜好。这里保持 1:1 */
+  aspect-ratio: 1 / 1; 
+}
 
-/* 手动组装网格 */
-.setup-grid-area { margin-top: 20rpx; }
-.grid-title { font-size: 24rpx; color: #999; font-weight: bold; margin-bottom: 30rpx; text-transform: uppercase; letter-spacing: 2rpx; text-align: center;}
+.grid-item {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 20rpx rgba(163, 177, 198, 0.15);
+  position: relative;
+  /* 这里的宽高会自动由 grid 和 aspect-ratio 决定，无需指定 */
+}
 
-.method-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24rpx; }
-.method-card { background: #fff; border-radius: 24rpx; padding: 30rpx; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.02); transition: all 0.2s; border: 2rpx solid transparent; min-height: 140rpx; }
-.method-card:active { transform: scale(0.96); border-color: #1976D2; }
-.m-name { font-size: 32rpx; font-weight: bold; color: #333; margin-bottom: 8rpx; }
-.m-desc { font-size: 22rpx; color: #999; }
+.grid-item:active { background: #2962FF; }
+.grid-item:active .item-name { color: #FFF; }
+.grid-item:active .item-en { color: rgba(255,255,255,0.7); }
+.grid-item:active .grid-idx { color: rgba(255,255,255,0.3); }
+
+.grid-idx {
+  position: absolute; top: 12rpx; left: 16rpx;
+  font-size: 24rpx; font-weight: 900; color: #F0F2F5;
+}
+.item-name { font-size: 28rpx; font-weight: 800; color: #333; margin-bottom: 4rpx; }
+.item-en { font-size: 16rpx; color: #9AA5B1; font-weight: 700; text-transform: uppercase; }

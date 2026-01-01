@@ -1,46 +1,68 @@
 <view class="container">
   
-  <view class="header-section">
-    <view>
-      <view class="title">{{uiConfig[mode].title}}</view>
-      <view class="subtitle">{{uiConfig[mode].sub}}</view>
+  <view class="header-mini">
+    <view class="header-title">{{uiConfig[mode].title}}</view>
+    <view class="header-mode">{{mode === 'gear' ? 'ASSETS' : 'TACTICS'}}</view>
+  </view>
+
+  <view class="action-row">
+    <view class="action-btn" bindtap="handleMainAction">
+      <view class="btn-glow"></view>
+      <text class="btn-title">{{uiConfig[mode].mainBtn}}</text>
+      <text class="btn-sub">{{uiConfig[mode].mainDesc}}</text>
     </view>
-    <view class="rank-entry" bindtap="goToRanking">
-      <text>{{uiConfig[mode].rank}}</text>
-      <text class="arrow">></text>
+    <view class="action-btn" bindtap="handlePaste">
+      <view class="btn-glow"></view>
+      <text class="btn-title">导入口令</text>
+      <text class="btn-sub">IMPORT CODE</text> 
     </view>
   </view>
 
-  <view class="action-card">
-    <view class="scan-area" bindtap="handleMainAction">
-      <view class="scan-text">
-        <text class="main-text">{{uiConfig[mode].mainBtn}}</text>
-        <text class="sub-text">{{uiConfig[mode].mainDesc}}</text>
+  <view class="search-section">
+    <input 
+      class="search-input" 
+      placeholder="{{uiConfig[mode].searchHint}}" 
+      placeholder-class="ph-style"
+      confirm-type="search"
+      bindconfirm="handleSearch"
+    />
+    <view class="search-btn-txt" bindtap="handleSearchBtn">搜 索</view>
+  </view>
+
+  <view class="grid-container-wrapper">
+    
+    <block wx:if="{{mode === 'gear'}}">
+      <view class="grid-matrix">
+        <view 
+          class="grid-item" 
+          wx:for="{{gearTypes}}" 
+          wx:key="key" 
+          bindtap="handleSelectType" 
+          data-type="{{item.key}}"
+        >
+          <text class="grid-idx">0{{index + 1}}</text>
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-en">{{item.key}}</text>
+        </view>
       </view>
-    </view>
+    </block>
 
-    <view class="divider">
-      <text>OR</text>
-    </view>
-
-    <view class="search-box">
-      <input class="search-input" placeholder="{{uiConfig[mode].searchHint}}" bindconfirm="handleSearch" confirm-type="search" />
-    </view>
-  </view>
-
-  <view wx:if="{{mode === 'gear'}}" class="manual-entry" bindtap="handleManualGear">
-    <text>找不到？</text>
-    <text class="link">手动录入新装备 ></text>
-  </view>
-
-  <view wx:if="{{mode === 'setup'}}" class="setup-grid-area">
-    <view class="grid-title">手动组装 · 选择流派</view>
-    <view class="method-grid">
-      <view class="method-card" wx:for="{{methods}}" wx:key="key" bindtap="handleManualSetup" data-key="{{item.key}}">
-        <text class="m-name">{{item.name}}</text>
-        <text class="m-desc">{{item.desc}}</text>
+    <block wx:if="{{mode === 'setup'}}">
+      <view class="grid-matrix mode-2x2">
+        <view 
+          class="grid-item" 
+          wx:for="{{methods}}" 
+          wx:key="key" 
+          bindtap="handleManualSetup" 
+          data-key="{{item.key}}"
+        >
+          <text class="grid-idx">OP-0{{index + 1}}</text>
+          <text class="item-name">{{item.name}}</text>
+          <text class="item-en">{{item.desc}}</text>
+        </view>
       </view>
-    </view>
+    </block>
+
   </view>
 
 </view>

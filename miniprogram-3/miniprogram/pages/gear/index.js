@@ -1,7 +1,8 @@
 // pages/gear/index.js
 const db = wx.cloud.database();
 const _ = db.command;
-// --- 核心修复：路径是 ../../ (两层) ---
+
+// ✅ 核心修复：这里必须是两层 ../../
 const { GEAR_TYPES } = require('../../utils/constants.js');
 
 Page({
@@ -29,26 +30,22 @@ Page({
     else this.fetchSetups();
   },
 
-  // --- 拉取单品 (适配九大分类) ---
+  // 拉取单品
   fetchGearList() {
     db.collection('gear').orderBy('_createTime', 'desc').get()
       .then(res => {
         const rawList = res.data;
-        
-        // 数据清洗：注入图标和中文名
         const list = rawList.map(item => {
-          // 在常量表中查找定义
           const typeDef = GEAR_TYPES.find(t => t.key === item.category) || {};
           return {
             ...item,
-            _icon: typeDef.icon || '📦', // 找不到就用默认盒子
+            _icon: typeDef.icon || '📦',
             _typeName: typeDef.name || item.category,
-            _displayDesc: this.getDisplayDesc(item) // 生成副标题
+            _displayDesc: this.getDisplayDesc(item)
           };
         });
 
         const totalVal = list.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
-        
         this.setData({ 
           gearList: list, 
           totalCount: list.length, 
@@ -57,11 +54,9 @@ Page({
       });
   },
 
-  // 辅助函数：生成副标题 (根据不同类型显示不同参数)
   getDisplayDesc(item) {
-    if (!item.specs) return item.param || ''; // 兼容旧数据
+    if (!item.specs) return item.param || '';
     const s = item.specs;
-    
     switch (item.category) {
       case 'rod': return `${s.length || '?'}m · ${s.power || '?'}`;
       case 'reel': return `${s.ratio || '?'}速比 · ${s.drag || '?'}kg`;
@@ -72,7 +67,7 @@ Page({
     }
   },
 
-  // --- 拉取套装 ---
+  // 拉取套装
   fetchSetups() {
     db.collection('gear_setups').orderBy('_createTime', 'desc').get()
       .then(res => this.setData({ setupList: res.data }));
