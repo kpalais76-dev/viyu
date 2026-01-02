@@ -1,0 +1,52 @@
+/* pages/record/index.wxss */
+page { background: #F4F6F9; height: 100vh; }
+.record-container { display: flex; flex-direction: column; height: 100%; }
+
+.stat-header {
+  background: #1A1D26; padding: 30rpx 40rpx; color: #FFF;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4rpx 15rpx rgba(26,29,38,0.2); z-index: 10;
+}
+.stat-item { display: flex; flex-direction: column; }
+.num { font-size: 40rpx; font-weight: 900; font-family: 'DIN'; }
+.lbl { font-size: 20rpx; opacity: 0.6; }
+
+.add-btn-mini {
+  background: #2962FF; padding: 12rpx 24rpx; border-radius: 30rpx;
+  font-size: 24rpx; font-weight: bold;
+}
+
+.timeline-list { flex: 1; padding: 30rpx; box-sizing: border-box; }
+
+.record-card {
+  display: flex; margin-bottom: 30rpx;
+}
+
+.card-date {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  padding-right: 24rpx; min-width: 80rpx; border-right: 2rpx solid #E0E0E0;
+  margin-right: 24rpx; padding-top: 10rpx;
+}
+.day { font-size: 40rpx; font-weight: 900; color: #1A1D26; line-height: 1; }
+.month { font-size: 20rpx; color: #8C96A5; font-weight: bold; }
+
+.card-main {
+  flex: 1; background: #FFF; padding: 24rpx; border-radius: 16rpx;
+  box-shadow: 0 4rpx 10rpx rgba(163,177,198,0.1);
+}
+
+.main-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12rpx; }
+.fish-tag { font-size: 32rpx; font-weight: 900; color: #333; }
+.weight-txt { font-size: 28rpx; color: #2962FF; font-weight: bold; }
+
+.main-info { font-size: 24rpx; color: #666; margin-bottom: 16rpx; }
+.sep { margin: 0 10rpx; color: #CCC; }
+
+.setup-snapshot {
+  background: #F8F9FB; padding: 10rpx 16rpx; border-radius: 8rpx;
+  display: inline-flex; align-items: center; font-size: 20rpx; color: #8C96A5; font-weight: bold;
+}
+.setup-snapshot .icon { margin-right: 8rpx; }
+
+.empty-tip { text-align: center; color: #CCC; margin-top: 100rpx; font-size: 28rpx; display: flex; flex-direction: column; }
+.empty-tip .sub { font-size: 24rpx; opacity: 0.7; margin-top: 10rpx; }

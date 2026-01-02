@@ -1,0 +1,70 @@
+/* pages/gear/form/index.wxss */
+page { background: #F4F6F9; padding-bottom: 200rpx; }
+.form-container { padding: 30rpx; }
+
+.form-card {
+  background: #FFF; border-radius: 20rpx; padding: 30rpx 30rpx 10rpx 30rpx;
+  margin-bottom: 30rpx; box-shadow: 0 4rpx 10rpx rgba(163,177,198,0.1);
+}
+
+.card-title {
+  font-size: 24rpx; font-weight: 900; color: #8C96A5; 
+  margin-bottom: 30rpx; letter-spacing: 1rpx; text-transform: uppercase;
+}
+
+.form-item { margin-bottom: 30rpx; }
+.label { font-size: 24rpx; font-weight: bold; color: #1A1D26; margin-bottom: 12rpx; }
+
+.input, .picker-val {
+  width: 100%; height: 80rpx; line-height: 80rpx;
+  border-bottom: 2rpx solid #F0F2F5;
+  font-size: 30rpx; font-weight: 500; color: #333;
+}
+.placeholder { color: #CCC; }
+
+/* 2列布局 */
+.row-2-col { display: flex; gap: 30rpx; }
+.row-2-col .form-item { flex: 1; }
+
+/* 步进器样式 */
+.stepper {
+  display: flex; align-items: center; border-bottom: 2rpx solid #F0F2F5; height: 80rpx;
+}
+.step-btn {
+  width: 60rpx; height: 60rpx; line-height: 56rpx; text-align: center;
+  border-radius: 8rpx; font-weight: 900; font-size: 32rpx;
+}
+.step-btn.minus { background: #F0F2F5; color: #8C96A5; }
+.step-btn.plus { background: #E3F2FD; color: #2962FF; }
+.step-input {
+  flex: 1; text-align: center; font-size: 32rpx; font-weight: 900; color: #1A1D26; height: 100%;
+}
+
+/* 标签 */
+.tags-wrapper { display: flex; flex-wrap: wrap; gap: 20rpx; margin-bottom: 20rpx; }
+.tag-item {
+  padding: 12rpx 24rpx; border-radius: 30rpx;
+  background: #F4F6F9; color: #8C96A5;
+  font-size: 24rpx; font-weight: bold;
+  border: 2rpx solid transparent; transition: all 0.2s;
+}
+.tag-item.active { background: #2962FF; color: #FFF; box-shadow: 0 6rpx 15rpx rgba(41,98,255,0.3); }
+
+/* 底部按钮 */
+.action-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  padding: 30rpx; background: #FFF;
+  box-shadow: 0 -10rpx 30rpx rgba(0,0,0,0.05); z-index: 100;
+}
+.submit-btn-full {
+  background: #1A1D26; color: #FFF; font-weight: 900;
+  height: 90rpx; line-height: 90rpx; border-radius: 45rpx;
+  font-size: 30rpx; box-shadow: 0 10rpx 20rpx rgba(26,29,38,0.3);
+}
+.btn-group { display: flex; gap: 24rpx; }
+.btn {
+  flex: 1; height: 90rpx; line-height: 90rpx; border-radius: 45rpx;
+  font-size: 30rpx; font-weight: 900; color: #FFF;
+}
+.btn.delete { background: #FF3B30; box-shadow: 0 10rpx 20rpx rgba(255,59,48,0.3); }
+.btn.save { background: #2962FF; box-shadow: 0 10rpx 20rpx rgba(41,98,255,0.3); }

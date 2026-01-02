@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab-item {{activeTab==='method'?'active':''}}" bindtap="switchTab" data-key="method">
+      <text>主流钓法</text><view class="line"></view>
+    </view>
+    <view class="tab-item {{activeTab==='skill'?'active':''}}" bindtap="switchTab" data-key="skill">
+      <text>核心手法</text><view class="line"></view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="list-area">
+    <block wx:for="{{list}}" wx:key="_id">
+      <view class="method-card" wx:if="{{item.type === 'method'}}" bindtap="toDetail" data-id="{{item._id}}">
+        <view class="card-head">
+          <text class="title">{{item.title}}</text>
+          <text class="tag">{{item.tags[0]}}</text> 
+        </view>
+        <text class="desc">{{item.desc}}</text>
+        <view class="meta">
+          <text>⚡️ 关联装备：{{item.content_detail.gear}}</text>
+        </view>
+      </view>
+
+      <view class="skill-card" wx:if="{{item.type === 'skill'}}" bindtap="toDetail" data-id="{{item._id}}">
+        <view class="skill-icon">⚡️</view>
+        <view class="skill-info">
+          <text class="title">{{item.title}}</text>
+          <text class="desc">{{item.desc}}</text>
+        </view>
+        <text class="arrow">></text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

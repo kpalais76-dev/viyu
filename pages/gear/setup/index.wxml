@@ -1,0 +1,32 @@
+<view class="container">
+  <view class="header">
+    <view class="title">TACTICAL COMMAND</view>
+    <view class="sub">战术配置管理中心</view>
+  </view>
+
+  <scroll-view scroll-y class="list-area">
+    <view class="setup-item" wx:for="{{setups}}" wx:key="_id" bindtap="toEdit" data-id="{{item._id}}">
+      <view class="item-head">
+        <text class="tag">{{item.method_key}}</text>
+        <text class="name">{{item.name}}</text>
+      </view>
+      <view class="item-detail">
+        <text>包含 {{utils.count(item.slots)}} 件装备组件</text>
+      </view>
+      <view class="del-btn" catchtap="onDelete" data-id="{{item._id}}">×</view>
+    </view>
+    
+    <view class="add-bar" bindtap="toCreate">
+      <text>+ 部署新战术 (DEPLOY NEW)</text>
+    </view>
+  </scroll-view>
+</view>
+
+<wxs module="utils">
+module.exports.count = function(obj) {
+  var c = 0;
+  if(!obj) return 0;
+  // 简单计算非空对象的数量
+  return Object.keys(obj).length; 
+}
+</wxs>

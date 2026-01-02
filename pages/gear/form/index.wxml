@@ -1,0 +1,91 @@
+<view class="form-container">
+
+<view class="form-card">
+  <view class="card-title">基础档案</view>
+  
+  <view class="form-item">
+    <view class="label">品牌 BRAND</view>
+    <input class="input" placeholder="请输入品牌名称" value="{{formData.brand}}" bindinput="onInput" data-field="brand"/>
+  </view>
+  
+  <view class="form-item">
+    <view class="label">产品名称 NAME</view>
+    <input class="input" placeholder="请输入具体型号或名称" value="{{formData.name}}" bindinput="onInput" data-field="name"/>
+  </view>
+
+  <view class="row-2-col">
+    <view class="form-item">
+      <view class="label">单价 PRICE</view>
+      <input class="input" type="digit" placeholder="0.00" value="{{formData.price}}" bindinput="onInput" data-field="price"/>
+    </view>
+
+    <view class="form-item">
+      <view class="label">库存数量 QTY</view>
+      <view class="stepper">
+        <view class="step-btn minus" bindtap="onCountChange" data-delta="-1">-</view>
+        <input class="step-input" type="number" value="{{formData.count}}" bindinput="onInput" data-field="count"/>
+        <view class="step-btn plus" bindtap="onCountChange" data-delta="1">+</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="form-card">
+  <view class="card-title">技术规格 / SPECS</view>
+  <block wx:for="{{dynamicFields}}" wx:key="key">
+    <view class="form-item">
+      <view class="label">{{item.label}}</view>
+      
+      <picker wx:if="{{item.type === 'selector'}}" 
+        bindchange="onPickerChange" 
+        data-key="{{item.key}}" 
+        data-options="{{item.options}}"
+        range="{{item.options}}"
+      >
+        <view class="picker-val {{formData.specs[item.key] ? '' : 'placeholder'}}">
+          {{formData.specs[item.key] || '点击选择 ' + item.label}}
+        </view>
+      </picker>
+
+      <input wx:else 
+        class="input" 
+        type="{{item.type === 'digit' ? 'digit' : 'text'}}"
+        placeholder="{{item.placeholder}}"
+        value="{{formData.specs[item.key]}}"
+        bindinput="onSpecInput"
+        data-key="{{item.key}}"
+      />
+    </view>
+  </block>
+</view>
+
+<view class="form-card">
+  <view class="card-title">适用场景 / TAGS</view>
+  <view class="tags-wrapper">
+    <view 
+      class="tag-item {{utils.includes(formData.tags, item.key) ? 'active' : ''}}" 
+      wx:for="{{methodOptions}}" 
+      wx:key="key"
+      bindtap="toggleTag"
+      data-key="{{item.key}}"
+    >
+      {{item.name}}
+    </view>
+  </view>
+</view>
+
+<view class="action-bar">
+  <view class="btn-group" wx:if="{{isEdit}}">
+    <button class="btn delete" bindtap="deleteGear">移除</button>
+    <button class="btn save" bindtap="submit">保存变更</button>
+  </view>
+  <button wx:else class="submit-btn-full" bindtap="submit">确认入库 / SAVE ASSET</button>
+</view>
+
+</view>
+
+<wxs module="utils">
+module.exports.includes = function(arr, item) {
+  return arr && arr.indexOf(item) > -1;
+}
+</wxs>

@@ -1,0 +1,55 @@
+<view class="container">
+  
+  <block wx:if="{{info.type === 'method'}}">
+    <view class="hero">
+      <view class="hero-title">{{info.title}}</view>
+      <view class="hero-sub">{{info.desc}}</view>
+    </view>
+
+    <view class="smart-panel">
+      <view class="sp-title">我的资源分析 / AI ANALYSIS</view>
+      <view class="sp-grid">
+        <view class="sp-item {{analysis.hasGear?'ok':'no'}}">
+          <text class="sp-val">{{analysis.gearCount}}件</text>
+          <text class="sp-lbl">可用装备库存</text>
+          <text class="sp-icon">{{analysis.hasGear ? '✅' : '⚠️'}}</text>
+        </view>
+        <view class="sp-item {{analysis.hasSpot?'ok':'no'}}">
+          <text class="sp-val">{{analysis.spotCount}}个</text>
+          <text class="sp-lbl">适配钓点资源</text>
+          <text class="sp-icon">{{analysis.hasSpot ? '✅' : '⚠️'}}</text>
+        </view>
+      </view>
+      <view class="sp-tip" wx:if="{{!analysis.hasGear}}">提示：您的库中似乎缺少核心装备，建议先去录入。</view>
+    </view>
+
+    <view class="section">
+      <view class="sec-title">核心要素</view>
+      <view class="detail-row"><text class="label">环境：</text>{{info.content_detail.water}}</view>
+      <view class="detail-row"><text class="label">鱼种：</text>{{info.content_detail.fish}}</view>
+      <view class="detail-row"><text class="label">装备：</text>{{info.content_detail.gear}}</view>
+      <view class="detail-row"><text class="label">动作：</text>{{info.content_detail.action}}</view>
+    </view>
+  </block>
+
+  <block wx:if="{{info.type === 'skill'}}">
+    <view class="hero skill-hero">
+      <view class="hero-title">{{info.title}}</view>
+      <view class="hero-tag">所属流派：{{info.category}}</view>
+    </view>
+
+    <view class="section">
+      <view class="sec-title">操作步骤</view>
+      <view class="step-list">
+        <view class="step-item" wx:for="{{info.steps}}" wx:key="*this">{{item}}</view>
+      </view>
+    </view>
+    <view class="tips-box">💡 {{info.tips}}</view>
+  </block>
+
+  <view class="footer-bar" wx:if="{{info.type === 'method'}}">
+    <button class="link-btn" bindtap="goSetup">
+      <text>🚀 调用我的装备生成战术</text>
+    </button>
+  </view>
+</view>

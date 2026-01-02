@@ -1,0 +1,54 @@
+<view class="record-container">
+  
+  <view class="stat-header">
+    <view class="stat-item">
+      <text class="num">{{totalRecords}}</text>
+      <text class="lbl">总场次</text>
+    </view>
+    <view class="stat-item">
+      <text class="num">{{maxWeight || '-'}}</text>
+      <text class="lbl">最大单尾(kg)</text>
+    </view>
+    <view class="add-btn-mini" bindtap="goToCreate">+ 记一笔</view>
+  </view>
+
+  <scroll-view class="timeline-list" scroll-y enable-back-to-top>
+    
+    <view class="empty-tip" wx:if="{{records.length === 0}}">
+      <text>暂无渔获记录</text>
+      <text class="sub">去开竿吧！</text>
+    </view>
+
+    <view 
+      class="record-card" 
+      wx:for="{{records}}" 
+      wx:key="_id"
+    >
+      <view class="card-date">
+        <text class="day">{{item.day}}</text>
+        <text class="month">{{item.month}}月</text>
+      </view>
+
+      <view class="card-main">
+        <view class="main-head">
+          <text class="fish-tag">{{item.fish_type}}</text>
+          <text class="weight-txt" wx:if="{{item.weight}}">{{item.weight}}kg</text>
+        </view>
+        
+        <view class="main-info">
+          <text>数量: {{item.count}}尾</text>
+          <text class="sep">|</text>
+          <text>战术: {{item.setup_name || '未指定'}}</text>
+        </view>
+
+        <view class="setup-snapshot">
+           <text class="icon">🎣</text> 
+           <text>{{item.method_key === 'lure' ? '路亚' : (item.method_key === 'tai' ? '台钓' : '通用')}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 100rpx;"></view>
+  </scroll-view>
+
+</view>

@@ -1,0 +1,50 @@
+page { background: #F0F2F5; padding: 30rpx; box-sizing: border-box; }
+
+/* HUD */
+.env-hud {
+  background: #2C3E50; color: #FFF; border-radius: 20rpx; padding: 30rpx;
+  margin-bottom: 40rpx; box-shadow: 0 10rpx 20rpx rgba(44,62,80,0.3);
+}
+.hud-row { display: flex; justify-content: space-between; margin-bottom: 30rpx; font-weight: bold; font-size: 28rpx; }
+.data-grid { display: flex; justify-content: space-between; }
+.data-item { display: flex; flex-direction: column; align-items: center; }
+.val { font-size: 36rpx; font-weight: 900; font-family: sans-serif; }
+.lbl { font-size: 20rpx; opacity: 0.7; margin-top: 6rpx; }
+
+/* 战术卡片 */
+.section-title { font-size: 24rpx; font-weight: 900; color: #7F8C8D; margin-bottom: 20rpx; letter-spacing: 1rpx; }
+.setup-scroll { display: flex; height: 200rpx; margin-bottom: 50rpx; }
+.setup-card {
+  width: 300rpx; height: 100%; background: #FFF; border-radius: 16rpx;
+  margin-right: 20rpx; padding: 24rpx; box-sizing: border-box; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: space-between;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+}
+.setup-card.add { border: 2rpx dashed #BDC3C7; background: transparent; align-items: center; justify-content: center; color: #7F8C8D; }
+.setup-card .tag { font-size: 18rpx; background: #2C3E50; color: #FFF; padding: 4rpx 8rpx; border-radius: 6rpx; align-self: flex-start; }
+.setup-card .name { font-size: 28rpx; font-weight: bold; color: #2C3E50; }
+.setup-card .detail { font-size: 20rpx; color: #95A5A6; }
+
+/* 核心指令 */
+.action-area { display: flex; gap: 24rpx; }
+.big-btn {
+  flex: 1; height: 160rpx; border-radius: 20rpx; padding: 30rpx;
+  display: flex; flex-direction: column; justify-content: center;
+  box-shadow: 0 6rpx 15rpx rgba(0,0,0,0.1);
+}
+.primary { background: #2980B9; color: #FFF; }
+.secondary { background: #FFF; color: #2C3E50; }
+.btn-main { font-size: 32rpx; font-weight: 900; margin-bottom: 8rpx; }
+.btn-sub { font-size: 18rpx; opacity: 0.8; font-weight: bold; letter-spacing: 1rpx; }
+
+/* 追加或修改 */
+.knowledge-banner {
+  background: #FFF; border-radius: 20rpx; padding: 30rpx; margin-bottom: 30rpx; /* 增加底部间距 */
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: 0 4rpx 10rpx rgba(163,177,198,0.1);
+}
+.kb-content { display: flex; align-items: center; }
+.kb-icon { font-size: 40rpx; margin-right: 20rpx; background: #FFF3E0; width: 80rpx; height: 80rpx; text-align: center; line-height: 80rpx; border-radius: 16rpx; }
+.kb-title { font-size: 30rpx; font-weight: 900; color: #1A1D26; display: block; }
+.kb-sub { font-size: 22rpx; color: #999; margin-top: 4rpx; }
+.kb-arrow { color: #2962FF; font-weight: bold; font-size: 24rpx; }

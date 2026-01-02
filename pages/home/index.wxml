@@ -1,0 +1,56 @@
+<view class="dashboard">
+  
+  <view class="env-hud">
+    <view class="hud-row">
+      <view class="location">📍 千岛湖·东南战区</view>
+      <view class="status">适合出钓</view>
+    </view>
+    <view class="data-grid">
+      <view class="data-item"><text class="val">24°C</text><text class="lbl">气温</text></view>
+      <view class="data-item"><text class="val">1012</text><text class="lbl">气压</text></view>
+      <view class="data-item"><text class="val">东北3</text><text class="lbl">风向</text></view>
+    </view>
+  </view>
+
+  <view style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20rpx;">
+    <view class="section-title" style="margin-bottom: 0;">战术部署 / ACTIVE SETUPS</view>
+    <view bindtap="onManageGear" style="font-size: 24rpx; color: #2980B9; font-weight: bold;">管理 ></view>
+  </view>
+
+  <scroll-view class="setup-scroll" scroll-x enable-flex>
+    <view class="setup-card add" bindtap="onNewSetup">
+      <text class="icon">+</text>
+      <text class="txt">DEPLOY NEW</text>
+    </view>
+    <block wx:for="{{mySetups}}" wx:key="_id">
+      <view class="setup-card">
+        <view class="tag">{{item.method_key}}</view>
+        <view class="name">{{item.name}}</view>
+        <view class="detail">含 {{item.slotCount}} 件组件</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="knowledge-banner" bindtap="goToKnowledge">
+    <view class="kb-content">
+      <view class="kb-icon">📖</view>
+      <view>
+        <text class="kb-title">钓鱼知识库</text>
+        <text class="kb-sub">主流钓法与基础手法速查</text>
+      </view>
+    </view>
+    <view class="kb-arrow">查看 ></view>
+  </view>
+
+  <view class="action-area">
+    <view class="big-btn primary" bindtap="onRecord">
+      <text class="btn-main">记录渔获</text>
+      <text class="btn-sub">LOG CATCH</text>
+    </view>
+    <view class="big-btn secondary" bindtap="goToSpots">
+      <text class="btn-main">我的钓点</text>
+      <text class="btn-sub">SPOTS MAP</text>
+    </view>
+  </view>
+
+</view>

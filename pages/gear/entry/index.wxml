@@ -1,0 +1,92 @@
+<view class="gateway-container">
+  
+  <view class="gateway-header">
+    <view class="title">{{mode === 'gear' ? 'CHOOSE CATEGORY' : 'SELECT TACTICS'}}</view>
+    <view class="subtitle">
+      {{mode === 'gear' ? '请选择要入库的装备类型' : '请选择要部署的战术流派'}}
+    </view>
+  </view>
+
+  <view class="scan-tip-bar" wx:if="{{showCategoryModal}}">
+  <view class="tip-content">
+    <text class="tip-icon">✨</text>
+    <text>已识别: {{scannedData.name || '新装备'}} ({{scannedData.barcode}})</text>
+  </view>
+  <view class="tip-sub">请点击下方图标，选择该装备的分类 ↓</view>
+  <view class="close-btn" bindtap="closeModal">取消</view>
+</view>
+
+<view class="scan-fab" bindtap="onScan" wx:if="{{mode === 'gear' && !showCategoryModal}}">
+  <image src="/images/icons/goods.png" class="scan-icon" /> <text>扫码入库</text>
+</view>
+
+  <block wx:if="{{mode === 'gear'}}">
+    <view 
+      class="group-section" 
+      wx:for="{{gearGroups}}" 
+      wx:key="key"
+    >
+      <view class="group-head">
+        <text class="gh-name">{{item.name}}</text>
+        <text class="gh-desc">// {{item.desc}}</text>
+      </view>
+
+      <view class="grid-body {{item.key === 'consumable' ? 'col-3' : 'col-2'}}">
+        <view 
+          class="grid-card {{item.key === 'core' ? 'card-lg' : ''}}" 
+          wx:for="{{item.sub_types}}" 
+          wx:key="key" 
+          wx:for-item="sub"
+          bindtap="onSelectType"
+          data-parent="{{item.key}}"
+          data-type="{{sub.key}}"
+          data-name="{{sub.name}}"
+        >
+          <text class="card-icon">{{sub.icon}}</text>
+          <text class="card-name">{{sub.name}}</text>
+          <text class="card-en">{{sub.key}}</text>
+          <view class="corner"></view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{mode === 'setup'}}">
+    <view class="group-section">
+      <view class="group-head">
+        <text class="gh-name">TACTICAL SCHOOLS // 战术体系</text>
+      </view>
+      <view class="grid-body col-1">
+        <view 
+          class="grid-card card-lg" 
+          wx:for="{{methods}}" 
+          wx:key="key"
+          bindtap="onSelectMethod"
+          data-key="{{item.key}}"
+          style="align-items: flex-start; padding-left: 40rpx;"
+        >
+          <text class="card-name" style="font-size: 32rpx;">{{item.name}}</text>
+          <text class="card-en" style="margin-top: 8rpx;">{{item.desc}}</text>
+          <text class="card-en" style="color: #2962FF; margin-top: 16rpx;">点击部署 ></text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="switch-mode-bar" bindtap="switchMode">
+    <block wx:if="{{mode === 'gear'}}">
+      <text>想要组装套装？</text>
+      <text class="link">去新建战术配置 ></text>
+    </block>
+    <block wx:else>
+      <text>缺少配件？</text>
+      <text class="link">去录入单品装备 ></text>
+    </block>
+  </view>
+
+  <view class="scan-bar" bindtap="onScan" wx:if="{{mode === 'gear'}}">
+    <text class="scan-icon">📸</text>
+    <text>扫码识别入库 (Beta)</text>
+  </view>
+
+</view>

@@ -1,0 +1,77 @@
+<view class="user-container">
+
+<view class="identity-card {{isMember ? 'gold' : 'black'}}">
+  <view class="user-info" bindtap="login">
+    <view class="avatar">
+      <image wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text wx:else class="avatar-txt">登录</text>
+    </view>
+    <view class="info-text">
+      <view class="nickname">{{userInfo.nickName || '点击登录账户'}}</view>
+      <view class="membership">
+        <text class="badge">{{isMember ? 'PRO MEMBER' : 'FREE PLAN'}}</text>
+        <text class="exp" wx:if="{{!isMember}}">升级解锁 SBT 特权 ></text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="bg-pattern">ZHIYU</view>
+</view>
+
+<view class="stats-panel">
+  <view class="panel-title">生涯战绩 / CAREER</view>
+  <view class="stats-grid">
+    <view class="stat-item">
+      <text class="num">{{stats.totalRecords}}</text>
+      <text class="lbl">出钓场次</text>
+    </view>
+    <view class="stat-item">
+      <text class="num">{{stats.totalFish}}</text>
+      <text class="lbl">总渔获(尾)</text>
+    </view>
+    <view class="stat-item">
+      <text class="num">{{stats.maxWeight}}</text>
+      <text class="lbl">最大单尾(kg)</text>
+    </view>
+  </view>
+</view>
+
+<view class="menu-list">
+  
+  <view class="menu-item" bindtap="onSBT">
+    <view class="menu-left">
+      <text class="icon">👑</text>
+      <text class="txt">SBT 知渔码管理</text>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <view class="menu-item" bindtap="onAnalyze">
+    <view class="menu-left">
+      <text class="icon">📊</text>
+      <text class="txt">双维度数据分析</text>
+    </view>
+    <view class="tag-pro">PRO</view>
+  </view>
+
+  <view class="menu-item" bindtap="onBackup">
+    <view class="menu-left">
+      <text class="icon">☁️</text>
+      <text class="txt">云端数据备份</text>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <view class="menu-item">
+    <view class="menu-left">
+      <text class="icon">⚙️</text>
+      <text class="txt">设置</text>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+</view>
+
+<view class="version">知渔 Project Genesis v0.9.0</view>
+
+</view>

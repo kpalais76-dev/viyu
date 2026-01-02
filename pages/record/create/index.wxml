@@ -1,0 +1,178 @@
+<view class="process-container">
+
+<view class="step-indicator">
+  <view class="step-item {{currentStep >= 1 ? 'active' : ''}}">
+    <view class="dot">1</view>
+    <text>作钓前</text>
+  </view>
+  <view class="line {{currentStep >= 2 ? 'active' : ''}}"></view>
+  <view class="step-item {{currentStep >= 2 ? 'active' : ''}}">
+    <view class="dot">2</view>
+    <text>作钓中</text>
+  </view>
+  <view class="line {{currentStep >= 3 ? 'active' : ''}}"></view>
+  <view class="step-item {{currentStep >= 3 ? 'active' : ''}}">
+    <view class="dot">3</view>
+    <text>作钓后</text>
+  </view>
+</view>
+
+<view class="step-content" wx:if="{{currentStep === 1}}">
+  <view class="card-title">环境与部署 / PREPARE</view>
+  
+  <view class="card">
+    <view class="form-row">
+      <view class="label">关联钓点 (Spot)</view>
+      <picker range="{{mySpots}}" range-key="name" bindchange="onPickerChange" data-field="spotIndex">
+        <view class="picker-txt {{spotIndex<0 ? 'ph':''}}">
+          {{spotIndex>=0 ? mySpots[spotIndex].name : '选择或新建钓点 >'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="row-2-col">
+      <view class="form-row">
+        <view class="label">天气</view>
+        <input class="input" placeholder="晴/雨/气压" value="{{env.weather}}" bindinput="onEnvInput" data-field="weather"/>
+      </view>
+      <view class="form-row">
+        <view class="label">水深 (m)</view>
+        <input class="input" type="digit" placeholder="2.5" value="{{env.depth}}" bindinput="onEnvInput" data-field="depth"/>
+      </view>
+    </view>
+    <view class="row-2-col">
+      <view class="form-row">
+        <view class="label">水质</view>
+        <picker range="{{envOptions.turbidity}}" bindchange="onEnvPicker" data-field="turbidity">
+          <view class="picker-txt">{{env.turbidity || '选择水质'}}</view>
+        </picker>
+      </view>
+      <view class="form-row">
+        <view class="label">水流</view>
+        <picker range="{{envOptions.current}}" bindchange="onEnvPicker" data-field="current">
+          <view class="picker-txt">{{env.current || '选择流速'}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="form-row">
+      <view class="label">使用战术 (Setup)</view>
+      <picker range="{{mySetups}}" range-key="name" bindchange="onPickerChange" data-field="setupIndex">
+        <view class="picker-txt highlight {{setupIndex<0 ? 'ph':''}}">
+          {{setupIndex>=0 ? mySetups[setupIndex].name : '关联装备配置 >'}}
+        </view>
+      </picker>
+    </view>
+    <view class="form-row">
+      <view class="label">饵料信息 (Bait)</view>
+      <input class="input" placeholder="如: 蓝鲫+速攻 / 7g米诺" value="{{baitInfo}}" bindinput="onInput" data-field="baitInfo"/>
+    </view>
+  </view>
+
+  <button class="action-btn" bindtap="nextStep">确认开竿 (START)</button>
+</view>
+
+<view class="step-content" wx:if="{{currentStep === 2}}">
+  <view class="timer-card">
+    <view class="status-badge">作钓中...</view>
+    <view class="timer-val">{{displayTime}}</view>
+    <view class="timer-lbl">已持续时长</view>
+  </view>
+
+  <view class="card">
+    <view class="card-head row-between">
+      <text>渔获清单 (CATCHES)</text>
+      <text class="count-tag">{{totalCount}}尾 / {{totalWeight}}kg</text>
+    </view>
+
+    <view class="empty-area" wx:if="{{catches.length === 0}}">
+      <text>暂无渔获，耐心等待...</text>
+    </view>
+
+    <block wx:for="{{catches}}" wx:key="index">
+      <view class="catch-item">
+        <view class="ci-left">
+          <text class="ci-name">{{item.fishName}}</text>
+          <text class="ci-time">{{item.timeStr}}</text>
+        </view>
+        <view class="ci-right">
+          <text class="ci-val">{{item.weight}}kg</text>
+          <view class="ci-del" bindtap="removeCatch" data-index="{{index}}">×</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="big-add-btn" bindtap="showCatchModal">
+      <text class="icon">+</text>
+      <text>中鱼打卡</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">高光时刻 / PHOTOS</view>
+    <view class="photo-grid">
+      <view class="photo-item" wx:for="{{images}}" wx:key="*this">
+        <image src="{{item}}" mode="aspectFill"></image>
+      </view>
+      <view class="photo-add" bindtap="chooseImage">📷</view>
+    </view>
+  </view>
+
+  <button class="action-btn warning" bindtap="nextStep">收竿结算 (FINISH)</button>
+</view>
+
+<view class="step-content" wx:if="{{currentStep === 3}}">
+  <view class="result-card">
+    <view class="result-title">本次作钓战绩</view>
+    <view class="result-grid">
+      <view class="res-item">
+        <text class="val">{{totalCount}}</text>
+        <text class="lbl">总数量(尾)</text>
+      </view>
+      <view class="res-item">
+        <text class="val">{{totalWeight}}</text>
+        <text class="lbl">总重量(kg)</text>
+      </view>
+      <view class="res-item">
+        <text class="val">{{durationStr}}</text>
+        <text class="lbl">作钓时长</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="form-row">
+      <view class="label">记录标题</view>
+      <input class="input" placeholder="给这次行程起个标题" value="{{title}}" bindinput="onInput" data-field="title"/>
+    </view>
+    
+    <view class="form-row">
+      <view class="label">复盘心得 (Note)</view>
+      <textarea class="textarea" placeholder="总结鱼情、天气影响、手法得失..." value="{{note}}" bindinput="onInput" data-field="note"></textarea>
+    </view>
+    
+    <view class="form-row">
+      <view class="label">改进建议 (Next Step)</view>
+      <textarea class="textarea small" placeholder="下次需要注意什么..." value="{{suggestion}}" bindinput="onInput" data-field="suggestion"></textarea>
+    </view>
+  </view>
+
+  <button class="action-btn" bindtap="submit">归档保存 (ARCHIVE)</button>
+  <button class="sub-btn" bindtap="prevStep">返回修改</button>
+</view>
+
+<view class="modal-mask" wx:if="{{showModal}}">
+  <view class="modal-box">
+    <view class="m-title">中鱼记录</view>
+    <input class="m-input" placeholder="鱼种 (如: 鲈鱼)" value="{{tempCatch.name}}" bindinput="onModalInput" data-field="name"/>
+    <input class="m-input" type="digit" placeholder="单尾重量 (kg)" value="{{tempCatch.weight}}" bindinput="onModalInput" data-field="weight"/>
+    <view class="m-btns">
+      <button class="m-btn cancel" bindtap="closeModal">取消</button>
+      <button class="m-btn confirm" bindtap="confirmCatch">确认</button>
+    </view>
+  </view>
+</view>
+
+</view>

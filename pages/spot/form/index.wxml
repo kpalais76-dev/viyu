@@ -1,0 +1,56 @@
+<view class="container">
+
+<view class="card">
+  <view class="card-head">位置信息 / LOCATION</view>
+  
+  <view class="map-picker" bindtap="chooseLocation">
+    <view class="map-icon">📍</view>
+    <view class="map-info">
+      <text class="map-title" wx:if="{{name}}">{{name}}</text>
+      <text class="map-title placeholder" wx:else>点击在地图上选择位置</text>
+      <text class="map-sub" wx:if="{{address}}">{{address}}</text>
+    </view>
+    <text class="arrow">></text>
+  </view>
+
+  <view class="form-row">
+    <view class="label">名称修正</view>
+    <input class="input" placeholder="可自定义名称 (如: 老菜地)" value="{{name}}" bindinput="onInput" data-field="name"/>
+  </view>
+</view>
+
+<view class="card">
+  <view class="card-head">环境特征 / ENV</view>
+  
+  <view class="form-row">
+    <view class="label">水域类型</view>
+    <picker range="{{options.waterType}}" value="{{idx.waterType}}" bindchange="onPickerChange" data-field="idx.waterType">
+      <view class="picker-txt {{idx.waterType<0?'ph':''}}">
+        {{idx.waterType>=0 ? options.waterType[idx.waterType] : '请选择 (如: 水库)'}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="row-2-col">
+    <view class="form-row">
+      <view class="label">平均水深</view>
+      <picker range="{{options.depthRange}}" value="{{idx.depthRange}}" bindchange="onPickerChange" data-field="idx.depthRange">
+        <view class="picker-txt {{idx.depthRange<0?'ph':''}}">
+          {{idx.depthRange>=0 ? options.depthRange[idx.depthRange] : '选择范围'}}
+        </view>
+      </picker>
+    </view>
+    <view class="form-row">
+      <view class="label">水质状况</view>
+      <picker range="{{options.waterQuality}}" value="{{idx.waterQuality}}" bindchange="onPickerChange" data-field="idx.waterQuality">
+        <view class="picker-txt {{idx.waterQuality<0?'ph':''}}">
+          {{idx.waterQuality>=0 ? options.waterQuality[idx.waterQuality] : '选择水质'}}
+        </view>
+      </picker>
+    </view>
+  </view>
+</view>
+
+<button class="submit-btn" bindtap="submit">保存钓点</button>
+
+</view>

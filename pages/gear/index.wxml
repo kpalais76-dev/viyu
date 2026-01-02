@@ -1,0 +1,81 @@
+<view class="arsenal-container">
+
+<view class="asset-hud">
+  <view class="asset-row">
+    <view class="total-val">
+      <text class="currency">¥</text>
+      <text class="amount">{{totalValue}}</text>
+    </view>
+    <view class="total-count">
+      <text class="num">{{totalCount}}</text>
+      <text class="lbl">ITEMS</text>
+    </view>
+  </view>
+  <view class="hud-label">TOTAL ASSET VALUATION // 资产总估值</view>
+</view>
+
+<view class="category-tabs">
+  <view 
+    class="tab-item {{activeTab === 'core' ? 'active' : ''}}" 
+    bindtap="switchTab" data-key="core"
+  >
+    <text class="tab-cn">核心</text>
+    <text class="tab-en">CORE</text>
+  </view>
+  <view 
+    class="tab-item {{activeTab === 'aux' ? 'active' : ''}}" 
+    bindtap="switchTab" data-key="aux"
+  >
+    <text class="tab-cn">辅件</text>
+    <text class="tab-en">AUX</text>
+  </view>
+  <view 
+    class="tab-item {{activeTab === 'consumable' ? 'active' : ''}}" 
+    bindtap="switchTab" data-key="consumable"
+  >
+    <text class="tab-cn">后勤</text>
+    <text class="tab-en">LOGISTICS</text>
+  </view>
+</view>
+
+<scroll-view class="gear-list" scroll-y enable-back-to-top>
+  
+  <view class="empty-state" wx:if="{{gearList.length === 0}}">
+    <text class="empty-icon">📦</text>
+    <text class="empty-txt">NO ASSETS FOUND</text>
+    <view class="add-btn" bindtap="goToEntry">
+      <text>入库第一件装备</text>
+    </view>
+  </view>
+
+  <view 
+    class="gear-item" 
+    wx:for="{{gearList}}" 
+    wx:key="_id"
+    bindtap="goToDetail"
+    data-id="{{item._id}}"
+  >
+    <view class="item-icon">{{item.icon || '📦'}}</view>
+    <view class="item-info">
+      <view class="item-head">
+        <text class="brand">{{item.brand}}</text>
+        <text class="model">{{item.name}}</text>
+      </view>
+      <view class="item-sub">
+        <text class="tag">{{item.sub_type_name}}</text> 
+        <text class="specs" wx:if="{{item.desc_str}}">{{item.desc_str}}</text>
+      </view>
+    </view>
+    <view class="item-status">
+      <text class="status-dot active"></text>
+    </view>
+  </view>
+
+  <view style="height: 160rpx;"></view>
+</scroll-view>
+
+<view class="fab-add" bindtap="goToEntry">
+  <text class="plus">+</text>
+</view>
+
+</view>

@@ -1,0 +1,65 @@
+/* pages/user/index.wxss */
+page { background: #F4F6F9; }
+.user-container { padding: 30rpx; }
+
+/* 身份卡片 */
+.identity-card {
+  border-radius: 24rpx; padding: 40rpx; margin-bottom: 40rpx;
+  position: relative; overflow: hidden; color: #FFF;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.15);
+}
+.identity-card.black { background: linear-gradient(135deg, #1A1D26 0%, #2C3E50 100%); }
+.identity-card.gold { background: linear-gradient(135deg, #1A1D26 0%, #D4AF37 100%); }
+
+.user-info { display: flex; align-items: center; position: relative; z-index: 2; }
+.avatar { 
+  width: 100rpx; height: 100rpx; border-radius: 50%; background: #F0F0F0; 
+  margin-right: 24rpx; overflow: hidden; display: flex; align-items: center; justify-content: center;
+  border: 4rpx solid rgba(255,255,255,0.2);
+}
+.avatar image { width: 100%; height: 100%; }
+.avatar-txt { color: #333; font-size: 24rpx; font-weight: bold; }
+
+.info-text { flex: 1; }
+.nickname { font-size: 36rpx; font-weight: 900; margin-bottom: 8rpx; }
+.membership { display: flex; align-items: center; }
+.badge { 
+  background: rgba(0,0,0,0.3); padding: 4rpx 12rpx; border-radius: 8rpx; 
+  font-size: 20rpx; font-weight: bold; letter-spacing: 1rpx;
+}
+.exp { font-size: 20rpx; margin-left: 16rpx; opacity: 0.8; }
+
+.bg-pattern {
+  position: absolute; right: -20rpx; bottom: -40rpx;
+  font-size: 120rpx; font-weight: 900; opacity: 0.05; color: #FFF;
+  z-index: 1; pointer-events: none;
+}
+
+/* 生涯面板 */
+.stats-panel {
+  background: #FFF; border-radius: 20rpx; padding: 30rpx; margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+}
+.panel-title { font-size: 24rpx; font-weight: 900; color: #8C96A5; margin-bottom: 24rpx; }
+.stats-grid { display: flex; justify-content: space-between; }
+.stat-item { text-align: center; flex: 1; }
+.num { font-size: 40rpx; font-weight: 900; color: #1A1D26; display: block; font-family: 'DIN'; }
+.lbl { font-size: 22rpx; color: #999; }
+
+/* 菜单列表 */
+.menu-list { background: #FFF; border-radius: 20rpx; padding: 10rpx 30rpx; box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05); }
+.menu-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 30rpx 0; border-bottom: 2rpx solid #F8F9FB;
+}
+.menu-item:last-child { border-bottom: none; }
+.menu-left { display: flex; align-items: center; }
+.icon { font-size: 32rpx; margin-right: 20rpx; }
+.txt { font-size: 28rpx; font-weight: bold; color: #333; }
+.arrow { color: #CCC; font-size: 24rpx; }
+.tag-pro { 
+  background: #1A1D26; color: #D4AF37; font-size: 18rpx; padding: 2rpx 8rpx; 
+  border-radius: 6rpx; font-weight: bold; 
+}
+
+.version { text-align: center; color: #CCC; font-size: 20rpx; margin-top: 40rpx; }

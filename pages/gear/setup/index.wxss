@@ -1,0 +1,187 @@
+/* pages/gear/setup/index.wxss */
+
+/* 引入全局背景 */
+page { 
+  background: var(--bg-page); 
+  padding-bottom: 200rpx; 
+}
+
+.setup-container { padding: 30rpx; }
+
+/* 头部 */
+.setup-header {
+  background: #FFF; 
+  padding: 40rpx; 
+  border-radius: 20rpx;
+  margin-bottom: 40rpx; 
+  box-shadow: var(--shadow-sm); /* 使用变量 */
+}
+
+.method-tag {
+  display: inline-block; 
+  background: var(--primary-light); /* 使用变量 */
+  color: var(--primary);            /* 使用变量 */
+  font-size: 20rpx; 
+  font-weight: 900; 
+  padding: 6rpx 12rpx; 
+  border-radius: 6rpx;
+  margin-bottom: 16rpx;
+}
+
+.name-input {
+  font-size: 36rpx; 
+  font-weight: 900; 
+  color: var(--text-main);          /* 使用变量 */
+  border-bottom: 2rpx solid var(--border-color); /* 使用变量 */
+  padding-bottom: 10rpx;
+}
+.ph { color: var(--text-placeholder); font-weight: normal; }
+
+/* 槽位区 */
+.area-title {
+  /* 可以直接继承 app.wxss 的 .section-title，或者这里用变量重写 */
+  font-size: 24rpx; 
+  font-weight: 900; 
+  color: var(--text-sub); 
+  margin-bottom: 24rpx; 
+  letter-spacing: 1rpx;
+}
+
+.slot-card {
+  background: #FFF; 
+  border-radius: var(--radius-md);  /* 使用变量 */
+  margin-bottom: 20rpx;
+  display: flex; 
+  align-items: stretch; 
+  min-height: 120rpx;
+  position: relative; 
+  overflow: hidden; 
+  transition: all 0.2s;
+}
+
+/* 左侧标签 */
+.slot-label {
+  width: 100rpx; 
+  background: #F8F9FB; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 24rpx; 
+  font-weight: 900; 
+  color: #B0B8C3; 
+  text-transform: uppercase;
+  border-right: 2rpx solid var(--border-color); 
+  flex-shrink: 0;
+}
+
+/* 右侧内容 */
+.slot-content {
+  flex: 1; 
+  padding: 0 30rpx; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+}
+
+/* 状态样式：空 */
+.slot-card.empty { 
+  border: 2rpx dashed #D1D5DB; 
+  background: transparent; 
+}
+.slot-card.empty .slot-label { background: transparent; }
+.slot-card.empty .placeholder { font-size: 26rpx; color: var(--text-placeholder); font-weight: bold; }
+.slot-card.empty .arrow { color: var(--text-placeholder); }
+
+/* 状态样式：已填充 */
+.slot-card.filled { 
+  background: #FFF; 
+  border: 2rpx solid var(--primary); /* 使用变量 */
+  box-shadow: 0 8rpx 20rpx rgba(41,98,255,0.1); /* 这里可以保留特殊阴影，也可以用 var */
+}
+.slot-card.filled .slot-label { 
+  background: var(--primary); 
+  color: #FFF; 
+  border: none; 
+}
+.gear-name { font-size: 28rpx; font-weight: bold; color: var(--text-main); }
+.gear-spec { 
+  font-size: 22rpx; 
+  color: var(--primary); 
+  font-weight: bold; 
+  background: var(--primary-light); 
+  padding: 4rpx 10rpx; 
+  border-radius: 6rpx; 
+}
+
+/* 底部按钮 */
+.footer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #FFF; padding: 30rpx; 
+  box-shadow: 0 -10rpx 30rpx rgba(0,0,0,0.05); 
+  z-index: 90;
+}
+.save-btn {
+  /* 直接复用 app.wxss 里的逻辑，或者保留此处 */
+  background: var(--dark); 
+  color: #FFF; 
+  font-weight: 900;
+  height: 90rpx; 
+  line-height: 90rpx; 
+  border-radius: 45rpx;
+  font-size: 30rpx; 
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- 弹窗样式 --- */
+.selector-modal {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 100;
+}
+.modal-mask {
+  position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+}
+.modal-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: #FFF; 
+  border-radius: 24rpx 24rpx 0 0;
+  height: 60vh; 
+  display: flex; 
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+@keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+.modal-head {
+  padding: 30rpx; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 2rpx solid var(--border-color); 
+  font-size: 30rpx; 
+  font-weight: bold;
+}
+.close-icon { font-size: 40rpx; color: #999; padding: 0 20rpx; }
+
+.modal-list { flex: 1; padding: 20rpx; box-sizing: border-box; }
+
+.empty-list {
+  text-align: center; color: var(--text-placeholder); margin-top: 100rpx; font-size: 26rpx;
+}
+
+.select-item {
+  padding: 30rpx; 
+  border-bottom: 2rpx solid var(--border-color);
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+}
+.select-item:active { background: var(--bg-input); }
+.si-name { font-size: 28rpx; font-weight: bold; color: var(--text-content); }
+.si-spec { font-size: 24rpx; color: var(--text-sub); margin-left: 20rpx; }
+.si-count { 
+  font-size: 20rpx; 
+  color: var(--primary); 
+  background: var(--primary-light); 
+  padding: 2rpx 8rpx; 
+  border-radius: 4rpx; 
+  margin-left: 10rpx; 
+}

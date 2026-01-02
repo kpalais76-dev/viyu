@@ -1,0 +1,36 @@
+<view class="container">
+  
+  <view class="header">
+    <view class="title">BATTLEFIELDS</view>
+    <view class="sub">私密钓点库 ({{spots.length}})</view>
+  </view>
+
+  <scroll-view scroll-y class="list-area">
+    <view class="empty-tip" wx:if="{{spots.length === 0}}">
+      <text>暂无钓点，快去探索吧！</text>
+    </view>
+
+    <view class="spot-card" wx:for="{{spots}}" wx:key="_id" bindtap="toEdit" data-id="{{item._id}}">
+      <view class="card-top">
+        <view class="spot-name">{{item.name}}</view>
+        <view class="spot-type">{{item.water_type}}</view>
+      </view>
+      
+      <view class="card-mid">
+        <text wx:if="{{item.depth_range}}">水深:{{item.depth_range}}</text>
+        <text class="sep" wx:if="{{item.depth_range && item.water_quality}}">|</text>
+        <text wx:if="{{item.water_quality}}">水质:{{item.water_quality}}</text>
+      </view>
+
+      <view class="card-btm" catchtap="openMap" data-item="{{item}}">
+        <text class="icon">🧭</text>
+        <text>导航前往</text>
+      </view>
+    </view>
+
+    <view style="height: 120rpx;"></view>
+  </scroll-view>
+
+  <view class="fab-add" bindtap="toAdd">+</view>
+
+</view>
